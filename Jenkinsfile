@@ -1,10 +1,10 @@
 pipeline {
     agent any
-    tools {
-        maven 'Maven'
-        jdk 'Java'
-        sonarqube 'SonarQube'
-    }
+//     tools {
+//         maven 'Maven'
+//         jdk 'Java'
+//         sonarqube 'SonarQube'
+//     }
 
     stages {
         stage('Clone') {
@@ -14,7 +14,7 @@ pipeline {
         }
         stage('Build') {
             steps {
-                sh 'mvn clean install'
+                sh './mvnw clean package'
             }
         }
         stage('SonarQube Analysis') {
