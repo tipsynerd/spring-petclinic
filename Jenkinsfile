@@ -14,7 +14,6 @@ pipeline {
         }
         stage('Build') {
             steps {
-                sh 'cd spring-petclinic'
                 sh './mvnw clean package'
             }
         }
