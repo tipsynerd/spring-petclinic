@@ -14,6 +14,7 @@ pipeline {
         }
         stage('Build') {
             steps {
+                sh 'cd spring-petclinic'
                 sh './mvnw clean package'
             }
         }
@@ -41,7 +42,7 @@ pipeline {
 
         stage('Deploy') {
             steps {
-                sh 'java -jar target/spring-petclinic-3.0.0-SNAPSHOT.jar'
+                sh './mvnw package'
             }
         }
     }
