@@ -35,7 +35,7 @@ pipeline {
 
         stage('Deploy') {
             steps {
-                sh 'java -jar target/myapp.jar'
+                sh 'java -jar target/spring-petclinic-3.0.0-SNAPSHOT.jar'
             }
         }
     }
