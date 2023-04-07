@@ -30,11 +30,12 @@ pipeline {
                           def scannerHome = tool 'SonarQube Scanner'
                           def scannerCmd = "${scannerHome}/bin/sonar-scanner"
 
-                          sh "${scannerCmd} \
-                            -Dsonar.projectKey=my-project \
-                            -Dsonar.sources=src \
-                            -Dsonar.host.url=${env.SONARQUBE_HOST} \
-                            -Dsonar.token=${env.SONARQUBE_AUTH_TOKEN}"
+//                           sh "${scannerCmd} \
+//                             -Dsonar.projectKey=my-project \
+//                             -Dsonar.sources=src \
+//                             -Dsonar.host.url=${env.SONARQUBE_HOST} \
+//                             -Dsonar.token=${env.SONARQUBE_AUTH_TOKEN}"
+                             sh "./mvnw clean verify sonar:sonar -Dsonar.projectKey=pet-clinic -Dsonar.projectName=pet-clinic"
                         }
                 }
             }
