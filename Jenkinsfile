@@ -19,11 +19,22 @@ pipeline {
         }
         stage('SonarQube Analysis') {
             environment {
-                scannerHome = tool 'SonarQube'
+                SONARQUBE_HOME = tool 'SonarQube Scanner'
+                SONARQUBE_HOST = 'http://SonarQube:9000'
+                SONARQUBE_AUTH_TOKEN = credentials('sonarqube-token')
             }
             steps {
                 withSonarQubeEnv('SonarQube') {
-                    sh "${scannerHome}/bin/sonar-scanner"
+                    script {
+                          def scannerHome = tool 'SonarQube Scanner'
+                          def scannerCmd = "${scannerHome}/bin/sonar-scanner"
+
+                          sh "${scannerCmd} \
+                            -Dsonar.projectKey=my-project \
+                            -Dsonar.sources=src \
+                            -Dsonar.host.url=${env.SONARQUBE_HOST} \
+                            -Dsonar.login=${env.SONARQUBE_AUTH_TOKEN}"
+                        }
                 }
             }
         }
