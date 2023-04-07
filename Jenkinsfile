@@ -34,8 +34,7 @@ pipeline {
                             -Dsonar.projectKey=my-project \
                             -Dsonar.sources=src \
                             -Dsonar.host.url=${env.SONARQUBE_HOST} \
-                            -Dsonar.login=${env.SONARQUBE_AUTH_TOKEN} \
-                            -Dsonar.java.binaries=**/target/classes"
+                            -Dsonar.login=${env.SONARQUBE_AUTH_TOKEN}"
 
                         }
                 }
