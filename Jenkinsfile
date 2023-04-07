@@ -27,14 +27,8 @@ pipeline {
                 withSonarQubeEnv('SonarQube Scanner') {
                     script {
                           def scannerHome = tool 'SonarQube Scanner'
-                          def scannerCmd = "${scannerHome}/bin/sonar-scanner"
-
-                          sh "${scannerCmd} \
-                            -Dsonar.projectKey=my-project \
-                            -Dsonar.sources=src \
-                            -Dsonar.host.url=${env.SONARQUBE_HOST} \
-                            -Dsonar.login=${env.SONARQUBE_AUTH_TOKEN}"
-                        }
+                          sh "${scannerHome}/bin/sonar-scanner"
+                    }
                 }
             }
         }
