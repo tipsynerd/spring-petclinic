@@ -25,6 +25,7 @@ pipeline {
             }
             steps {
                 withSonarQubeEnv('SonarQube Scanner') {
+                    dir('spring-petclinic')
                     script {
                           def scannerHome = tool 'SonarQube Scanner'
                           def scannerCmd = "${scannerHome}/bin/sonar-scanner"
