@@ -21,21 +21,13 @@ pipeline {
             environment {
                 SONARQUBE_HOME = tool 'SonarQube Scanner'
                 SONARQUBE_HOST = 'http://SonarQube:9000'
-                SONARQUBE_AUTH_TOKEN = credentials('sonarqube-token')
+                SONARQUBE_AUTH_TOKEN = credentials('sonar-token')
             }
             steps {
                 withSonarQubeEnv('SonarQube Scanner') {
                     script {
                           sh 'cd ..'
-                          def scannerHome = tool 'SonarQube Scanner'
-                          def scannerCmd = "${scannerHome}/bin/sonar-scanner"
-
-//                           sh "${scannerCmd} \
-//                             -Dsonar.projectKey=my-project \
-//                             -Dsonar.sources=src \
-//                             -Dsonar.host.url=${env.SONARQUBE_HOST} \
-//                             -Dsonar.token=${env.SONARQUBE_AUTH_TOKEN}"
-                             sh "./mvnw clean verify sonar:sonar -Dsonar.projectKey=pet-clinic -Dsonar.projectName=pet-clinic"
+                          sh "./mvnw clean verify sonar:sonar -Dsonar.projectKey=pet-clinic -Dsonar.projectName=pet-clinic"
                         }
                 }
             }
