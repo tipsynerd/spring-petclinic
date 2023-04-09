@@ -36,7 +36,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 sh './mvnw package'
-                sh 'java -jar target/*.jar --server.port=8081'
+                sh 'nohup java -jar target/*.jar --server.port=8081'
             }
         }
     }
