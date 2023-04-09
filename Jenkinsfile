@@ -21,7 +21,7 @@ pipeline {
             environment {
                 SONARQUBE_HOME = tool 'SonarQube Scanner'
                 SONARQUBE_HOST = 'http://SonarQube:9000'
-                SONARQUBE_AUTH_TOKEN = credentials('sonar-token')
+                SONARQUBE_AUTH_TOKEN = credentials('sonarqube-token')
             }
             steps {
                 withSonarQubeEnv('SonarQube Scanner') {
