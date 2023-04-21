@@ -12,26 +12,20 @@ pipeline {
                 sh './mvnw clean package'
             }
         }
-        stage('SonarQube Analysis') {
-            environment {
-                SONARQUBE_HOME = tool 'SonarQube Scanner'
-                SONARQUBE_HOST = 'http://SonarQube:9000'
-                SONARQUBE_AUTH_TOKEN = credentials('sonarqube-token')
-            }
-            steps {
-                withSonarQubeEnv('SonarQube Scanner') {
-                    script {
-                          sh 'cd ..'
-                          sh "./mvnw clean verify sonar:sonar -Dsonar.projectKey=pet-clinic -Dsonar.projectName=pet-clinic"
-                        }
-                }
-            }
-        }
+
 
         stage('Deploy') {
             steps {
                 sh './mvnw package'
                 sh 'nohup java -jar target/*.jar --server.port=8081'
+            }
+        }
+        stage('Deploy with Ansible') {
+            environment {
+                ANSIBLE_HOST_KEY_CHECKING = "False"
+            }
+            steps {
+                sh 'ansible-playbook -i ansible/inventory ansible/playbook.yml'
             }
         }
     }
