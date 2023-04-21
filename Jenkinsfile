@@ -25,7 +25,7 @@ pipeline {
                 ANSIBLE_HOST_KEY_CHECKING = "False"
             }
             steps {
-                sh 'ansible-playbook -i ansible/inventory ansible/playbook.yml'
+                sh 'ansible-playbook -i /usr/share/jenkins/ref/ansible/inventory /usr/share/jenkins/ref/ansible/playbook.yml'
             }
         }
     }
