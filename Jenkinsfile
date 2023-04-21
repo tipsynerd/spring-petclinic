@@ -1,10 +1,5 @@
 pipeline {
     agent any
-//     tools {
-//         maven 'Maven'
-//         jdk 'Java'
-//         sonarqube 'SonarQube'
-//     }
 
     stages {
         stage('Clone') {
