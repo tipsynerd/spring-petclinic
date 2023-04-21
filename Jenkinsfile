@@ -17,7 +17,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 sh './mvnw package'
-                sh 'nohup java -jar target/*.jar --server.port=8081'
+//                 sh 'nohup java -jar target/*.jar --server.port=8081'
             }
         }
         stage('Deploy with Ansible') {
